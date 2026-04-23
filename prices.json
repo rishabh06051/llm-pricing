@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "last_updated": "2026-04-13",
+  "version": "1.2",
+  "last_updated": "2026-04-23",
   "models": {
     "openai:gpt-4o": {
       "provider": "openai",
@@ -11,10 +11,23 @@
       },
       "metadata": {
         "latency_ms": 700,
-        "context_window": 128000,
-        "quality_score": 0.92
-      }
+        "context_window": 128000
+      },
+      "capabilities": {
+        "strengths": ["reasoning", "tool", "instruction", "knowledge"],
+        "weaknesses": []
+      },
+      "scores": {
+        "tool": 0.95,
+        "reasoning": 0.96,
+        "instruction": 0.92,
+        "primitive": 0.85,
+        "knowledge": 0.93,
+        "other": 0.85
+      },
+      "fallbacks": []
     },
+
     "openai:gpt-4o-mini": {
       "provider": "openai",
       "model": "gpt-4o-mini",
@@ -24,22 +37,99 @@
       },
       "metadata": {
         "latency_ms": 300,
-        "context_window": 128000,
-        "quality_score": 0.78
-      }
+        "context_window": 128000
+      },
+      "capabilities": {
+        "strengths": ["tool", "instruction", "primitive"],
+        "weaknesses": ["reasoning"]
+      },
+      "scores": {
+        "tool": 0.9,
+        "reasoning": 0.65,
+        "instruction": 0.88,
+        "primitive": 0.9,
+        "knowledge": 0.8,
+        "other": 0.8
+      },
+      "fallbacks": ["openai:gpt-4o"]
     },
-    "anthropic:claude-3-haiku": {
-      "provider": "anthropic",
-      "model": "claude-3-haiku",
+
+    "openai:gpt-4.1": {
+      "provider": "openai",
+      "model": "gpt-4.1",
       "pricing": {
-        "input_per_1k_tokens": 0.25,
-        "output_per_1k_tokens": 1.25
+        "input_per_1k_tokens": 3.0,
+        "output_per_1k_tokens": 10.0
+      },
+      "metadata": {
+        "latency_ms": 600,
+        "context_window": 128000
+      },
+      "capabilities": {
+        "strengths": ["reasoning", "knowledge", "instruction"],
+        "weaknesses": ["primitive"]
+      },
+      "scores": {
+        "tool": 0.88,
+        "reasoning": 0.94,
+        "instruction": 0.9,
+        "primitive": 0.75,
+        "knowledge": 0.92,
+        "other": 0.82
+      },
+      "fallbacks": ["openai:gpt-4o"]
+    },
+
+    "openai:gpt-3.5-turbo": {
+      "provider": "openai",
+      "model": "gpt-3.5-turbo",
+      "pricing": {
+        "input_per_1k_tokens": 0.1,
+        "output_per_1k_tokens": 0.2
+      },
+      "metadata": {
+        "latency_ms": 250,
+        "context_window": 16000
+      },
+      "capabilities": {
+        "strengths": ["primitive", "instruction"],
+        "weaknesses": ["reasoning", "tool"]
+      },
+      "scores": {
+        "tool": 0.6,
+        "reasoning": 0.5,
+        "instruction": 0.8,
+        "primitive": 0.85,
+        "knowledge": 0.7,
+        "other": 0.75
+      },
+      "fallbacks": ["openai:gpt-4o-mini"]
+    },
+
+    "openai:gpt-4o-lite": {
+      "provider": "openai",
+      "model": "gpt-4o-lite",
+      "pricing": {
+        "input_per_1k_tokens": 0.5,
+        "output_per_1k_tokens": 1.5
       },
       "metadata": {
         "latency_ms": 400,
-        "context_window": 200000,
-        "quality_score": 0.80
-      }
+        "context_window": 64000
+      },
+      "capabilities": {
+        "strengths": ["tool", "instruction", "knowledge"],
+        "weaknesses": ["deep_reasoning"]
+      },
+      "scores": {
+        "tool": 0.9,
+        "reasoning": 0.7,
+        "instruction": 0.87,
+        "primitive": 0.82,
+        "knowledge": 0.85,
+        "other": 0.8
+      },
+      "fallbacks": ["openai:gpt-4o"]
     }
   }
 }
